@@ -10,4 +10,14 @@ mongoose.set('debug', false);
 
 mongoose.plugin(beautifyUnique);
 
+mongoose.Schema.prototype.toJSONNormalize = function() {
+  this.set('toJSON', {
+    virtuals: true,
+    versionKey:false,
+    transform: (doc, converted) => {
+      delete converted._id;
+    }
+  });
+}
+
 module.exports = mongoose.createConnection(config.mongodb.uri);

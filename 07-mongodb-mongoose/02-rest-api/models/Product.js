@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const connection = require('../libs/connection');
+const Category = require("./Category");
 
 const productSchema = new mongoose.Schema({
   title: {
@@ -32,4 +33,8 @@ const productSchema = new mongoose.Schema({
 
 });
 
-module.exports = connection.model('Product', productSchema);
+productSchema.toJSONNormalize();
+
+const Product = connection.model('Product', productSchema);
+
+module.exports = Product;

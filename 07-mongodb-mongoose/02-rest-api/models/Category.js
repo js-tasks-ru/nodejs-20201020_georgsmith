@@ -8,6 +8,8 @@ const subCategorySchema = new mongoose.Schema({
   },
 });
 
+subCategorySchema.toJSONNormalize();
+
 const categorySchema = new mongoose.Schema({
   title: {
     type: String,
@@ -17,4 +19,8 @@ const categorySchema = new mongoose.Schema({
   subcategories: [subCategorySchema],
 });
 
-module.exports = connection.model('Category', categorySchema);
+categorySchema.toJSONNormalize();
+
+const Category = connection.model('Category', categorySchema);
+
+module.exports = Category;
