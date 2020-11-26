@@ -18,6 +18,7 @@ server.on('request', (req, res) => {
   if(pathname.includes("\0") || pathname.includes("/")) {
     res.statusCode = 400;
     res.end("Bad request");
+    return;
   }
 
   const filepath = path.join(__dirname, 'files', pathname);
